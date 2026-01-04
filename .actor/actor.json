@@ -1,0 +1,68 @@
+{
+  "actorSpecification": 1,
+  "name": "dice-job-scraper",
+  "title": "Dice.com Job Scraper",
+  "description": "Scrapes job listings from dice.com with advanced filtering options. Extracts job titles, companies, locations, salaries, descriptions, requirements, and more.",
+  "version": "1.0.0",
+  "buildTag": "latest",
+  "meta": {
+    "templateId": "ts-crawlee-cheerio"
+  },
+  "input": "./input_schema.json",
+  "dockerfile": "./Dockerfile",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "title": "Dice Jobs Dataset",
+      "views": {
+        "jobs": {
+          "title": "Job Listings",
+          "transformation": {
+            "fields": [
+              "title",
+              "company",
+              "location",
+              "salary",
+              "jobType",
+              "postedDate",
+              "url"
+            ]
+          },
+          "display": {
+            "component": "table",
+            "properties": {
+              "title": {
+                "label": "Job Title",
+                "format": "text"
+              },
+              "company": {
+                "label": "Company",
+                "format": "text"
+              },
+              "location": {
+                "label": "Location",
+                "format": "text"
+              },
+              "salary": {
+                "label": "Salary",
+                "format": "text"
+              },
+              "jobType": {
+                "label": "Job Type",
+                "format": "text"
+              },
+              "postedDate": {
+                "label": "Posted",
+                "format": "text"
+              },
+              "url": {
+                "label": "URL",
+                "format": "link"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
