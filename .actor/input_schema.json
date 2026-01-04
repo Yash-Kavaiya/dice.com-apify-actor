@@ -1,0 +1,116 @@
+{
+  "title": "Dice.com Job Scraper Input",
+  "description": "Configure the Dice.com job scraper with search parameters and options.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Search Query",
+      "type": "string",
+      "description": "Job title, keywords, or company name to search for (e.g., 'Software Engineer', 'Python Developer')",
+      "editor": "textfield",
+      "prefill": "Software Engineer"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "City, state, or zip code (e.g., 'New York, NY', 'Remote', '10001')",
+      "editor": "textfield",
+      "prefill": ""
+    },
+    "radius": {
+      "title": "Search Radius (miles)",
+      "type": "integer",
+      "description": "Search radius in miles from the location",
+      "editor": "number",
+      "default": 30,
+      "minimum": 0,
+      "maximum": 500
+    },
+    "employmentTypes": {
+      "title": "Employment Types",
+      "type": "array",
+      "description": "Filter by employment type",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": ["FULLTIME", "PARTTIME", "CONTRACT", "THIRD_PARTY"]
+      },
+      "default": []
+    },
+    "postedDate": {
+      "title": "Posted Within",
+      "type": "string",
+      "description": "Filter jobs by when they were posted",
+      "editor": "select",
+      "enum": ["ONE", "THREE", "SEVEN", "THIRTY", "ANY"],
+      "enumTitles": ["Last 24 hours", "Last 3 days", "Last 7 days", "Last 30 days", "Any time"],
+      "default": "ANY"
+    },
+    "workplaceTypes": {
+      "title": "Workplace Type",
+      "type": "array",
+      "description": "Filter by workplace type (remote, on-site, hybrid)",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": ["Remote", "On-Site", "Hybrid"]
+      },
+      "default": []
+    },
+    "easyApply": {
+      "title": "Easy Apply Only",
+      "type": "boolean",
+      "description": "Only show jobs with Easy Apply option",
+      "default": false
+    },
+    "maxJobs": {
+      "title": "Maximum Jobs",
+      "type": "integer",
+      "description": "Maximum number of jobs to scrape (0 for unlimited)",
+      "editor": "number",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "maxConcurrency": {
+      "title": "Max Concurrency",
+      "type": "integer",
+      "description": "Maximum number of parallel requests",
+      "editor": "number",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "scrapeJobDetails": {
+      "title": "Scrape Full Job Details",
+      "type": "boolean",
+      "description": "Whether to visit each job page for full details (slower but more data)",
+      "default": true
+    },
+    "proxyConfiguration": {
+      "title": "Proxy Configuration",
+      "type": "object",
+      "description": "Proxy settings for the scraper",
+      "editor": "proxy",
+      "sectionCaption": "Proxy Settings",
+      "sectionDescription": "Configure proxy to avoid blocking"
+    },
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Optional custom start URLs (overrides search parameters)",
+      "editor": "requestListSources",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "default": []
+    }
+  },
+  "required": []
+}
